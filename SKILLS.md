@@ -113,17 +113,19 @@ popa is built by a team of specialist agents coordinated by Claude Code.
 
 All agents communicate through files. No agent invents state.
 
-```
-/context
-  ├── Brief.md              ← Product vision (read-only for agents)
-  ├── popa-UX-brief.md      ← UX spec (read-only for agents)
-  ├── SKILLS.md             ← This file (read-only for agents)
-  ├── prd.md                ← Full PRD (written by Research Agent)
-  ├── research.md           ← Research findings (written by Research Agent)
-  ├── progress.md           ← What has been built (Orchestrator updates)
-  ├── decisions.md          ← Key decisions made and why
-  └── qa-log.md             ← QA findings (written by QA Agent)
-```
+All shared context files live at the root of the repo:
+
+  /Popa
+    ├── CLAUDE.md          ← Auto-read by Claude Code every session (memory)
+    ├── Brief.md           ← Product vision (read-only for agents)
+    ├── SKILLS.md          ← This file (read-only for agents)
+    ├── popa-UX-brief.md   ← UX spec (read-only for agents) — TO BE ADDED
+    ├── competition_ux.md  ← Research findings
+    ├── research.md        ← To be created by Research Agent
+    ├── progress.md        ← To be created by Orchestrator
+    ├── decisions.md       ← To be created by Orchestrator
+    ├── qa-log.md          ← To be created by QA Agent
+    └── src/               ← Code lives here (to be created)```
 
 ### Agent handoff protocol
 
