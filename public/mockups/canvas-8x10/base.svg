@@ -1,0 +1,45 @@
+<svg width="872" height="1090" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="edge-l" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1210"/>
+      <stop offset="100%" stop-color="#2e2018"/>
+    </linearGradient>
+    <linearGradient id="edge-r" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2e2018"/>
+      <stop offset="100%" stop-color="#1a1210"/>
+    </linearGradient>
+    <linearGradient id="edge-t" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1210"/>
+      <stop offset="100%" stop-color="#2e2018"/>
+    </linearGradient>
+    <linearGradient id="edge-b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2e2018"/>
+      <stop offset="100%" stop-color="#1a1210"/>
+    </linearGradient>
+    <linearGradient id="face-shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.06"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <!-- Wrap side — left -->
+  <rect x="0" y="0" width="64" height="1090" fill="url(#edge-l)"/>
+  <!-- Wrap side — right -->
+  <rect x="808" y="0" width="64" height="1090" fill="url(#edge-r)"/>
+  <!-- Wrap side — top -->
+  <rect x="0" y="0" width="872" height="64" fill="url(#edge-t)"/>
+  <!-- Wrap side — bottom -->
+  <rect x="0" y="1026" width="872" height="64" fill="url(#edge-b)"/>
+  <!-- Canvas face — photo zone placeholder -->
+  <rect x="64" y="64" width="744" height="930" fill="#d6d0c4"/>
+  <!-- Subtle canvas texture via cross-hatch -->
+  <line x1="64" y1="64" x2="808" y2="994" stroke="#c8c2b6" stroke-width="0.5" opacity="0.4"/>
+  <line x1="808" y1="64" x2="64" y2="994" stroke="#c8c2b6" stroke-width="0.5" opacity="0.4"/>
+  <!-- Face shine -->
+  <rect x="64" y="64" width="744" height="930" fill="url(#face-shine)"/>
+  <!-- Corner mitre lines -->
+  <line x1="0" y1="0" x2="64" y2="64" stroke="#0d0a08" stroke-width="1.5"/>
+  <line x1="872" y1="0" x2="808" y2="64" stroke="#0d0a08" stroke-width="1.5"/>
+  <line x1="0" y1="1090" x2="64" y2="1026" stroke="#0d0a08" stroke-width="1.5"/>
+  <line x1="872" y1="1090" x2="808" y2="1026" stroke="#0d0a08" stroke-width="1.5"/>
+</svg>

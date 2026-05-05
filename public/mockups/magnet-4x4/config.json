@@ -1,0 +1,7 @@
+{
+  "photoZone": { "x": 36, "y": 36, "width": 368, "height": 368, "perspectiveTransform": [1,0,0,0,1,0,0,0,1], "borderRadius": 3 },
+  "overlayBlendMode": "multiply",
+  "baseSize": { "w": 440, "h": 440 },
+  "baseImage": "base.svg",
+  "overlayImage": "overlay.svg"
+}

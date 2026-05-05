@@ -1,0 +1,19 @@
+<svg width="424" height="624" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="paper-shadow">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+    <linearGradient id="paper-texture" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fefefe"/>
+      <stop offset="100%" stop-color="#f4f2ee"/>
+    </linearGradient>
+  </defs>
+  <!-- Paper shadow -->
+  <rect x="12" y="14" width="400" height="600" rx="2" fill="#000" opacity="0.2" filter="url(#paper-shadow)"/>
+  <!-- White photo paper -->
+  <rect x="12" y="12" width="400" height="600" rx="2" fill="url(#paper-texture)"/>
+  <!-- Photo zone — thin white border, typical 4x6 print has ~4mm border all around -->
+  <rect x="28" y="28" width="368" height="568" fill="#d8d4cc" rx="1"/>
+  <!-- Glossy sheen on paper surface -->
+  <rect x="12" y="12" width="200" height="300" rx="2" fill="#ffffff" opacity="0.06"/>
+</svg>

@@ -1,0 +1,64 @@
+<svg width="872" height="1090" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="header-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+  </defs>
+  <!-- White paper background -->
+  <rect width="872" height="1090" fill="#f8f8f6" rx="4"/>
+  <!-- Wire binding strip at top -->
+  <rect x="0" y="0" width="872" height="52" fill="#2a2a2a" rx="4"/>
+  <!-- Binding holes -->
+  <circle cx="80"  cy="26" r="10" fill="#1a1a1a"/>
+  <circle cx="160" cy="26" r="10" fill="#1a1a1a"/>
+  <circle cx="240" cy="26" r="10" fill="#1a1a1a"/>
+  <circle cx="320" cy="26" r="10" fill="#1a1a1a"/>
+  <circle cx="400" cy="26" r="10" fill="#1a1a1a"/>
+  <circle cx="480" cy="26" r="10" fill="#1a1a1a"/>
+  <circle cx="560" cy="26" r="10" fill="#1a1a1a"/>
+  <circle cx="640" cy="26" r="10" fill="#1a1a1a"/>
+  <circle cx="720" cy="26" r="10" fill="#1a1a1a"/>
+  <circle cx="800" cy="26" r="10" fill="#1a1a1a"/>
+  <!-- Wire rings highlight -->
+  <circle cx="80"  cy="26" r="7" fill="none" stroke="#555" stroke-width="2"/>
+  <circle cx="160" cy="26" r="7" fill="none" stroke="#555" stroke-width="2"/>
+  <circle cx="240" cy="26" r="7" fill="none" stroke="#555" stroke-width="2"/>
+  <circle cx="320" cy="26" r="7" fill="none" stroke="#555" stroke-width="2"/>
+  <circle cx="400" cy="26" r="7" fill="none" stroke="#555" stroke-width="2"/>
+  <circle cx="480" cy="26" r="7" fill="none" stroke="#555" stroke-width="2"/>
+  <circle cx="560" cy="26" r="7" fill="none" stroke="#555" stroke-width="2"/>
+  <circle cx="640" cy="26" r="7" fill="none" stroke="#555" stroke-width="2"/>
+  <circle cx="720" cy="26" r="7" fill="none" stroke="#555" stroke-width="2"/>
+  <circle cx="800" cy="26" r="7" fill="none" stroke="#555" stroke-width="2"/>
+  <!-- Photo zone (top half, below binding) -->
+  <rect x="32" y="68" width="808" height="504" fill="#d8d4cc"/>
+  <!-- Month header bar -->
+  <rect x="0" y="588" width="872" height="52" fill="url(#header-bg)"/>
+  <rect x="32" y="600" width="120" height="28" fill="#e74c4c" rx="3" opacity="0.85"/>
+  <!-- Calendar grid lines -->
+  <line x1="32"  y1="658" x2="840" y2="658" stroke="#e0ddd8" stroke-width="1"/>
+  <line x1="32"  y1="714" x2="840" y2="714" stroke="#e0ddd8" stroke-width="1"/>
+  <line x1="32"  y1="770" x2="840" y2="770" stroke="#e0ddd8" stroke-width="1"/>
+  <line x1="32"  y1="826" x2="840" y2="826" stroke="#e0ddd8" stroke-width="1"/>
+  <line x1="32"  y1="882" x2="840" y2="882" stroke="#e0ddd8" stroke-width="1"/>
+  <line x1="32"  y1="938" x2="840" y2="938" stroke="#e0ddd8" stroke-width="1"/>
+  <!-- Vertical grid -->
+  <line x1="147" y1="640" x2="147" y2="994" stroke="#e8e6e0" stroke-width="0.75"/>
+  <line x1="262" y1="640" x2="262" y2="994" stroke="#e8e6e0" stroke-width="0.75"/>
+  <line x1="377" y1="640" x2="377" y2="994" stroke="#e8e6e0" stroke-width="0.75"/>
+  <line x1="492" y1="640" x2="492" y2="994" stroke="#e8e6e0" stroke-width="0.75"/>
+  <line x1="607" y1="640" x2="607" y2="994" stroke="#e8e6e0" stroke-width="0.75"/>
+  <line x1="722" y1="640" x2="722" y2="994" stroke="#e8e6e0" stroke-width="0.75"/>
+  <!-- Day number dots (simplified) -->
+  <circle cx="90" cy="680" r="3" fill="#ccc"/>
+  <circle cx="205" cy="680" r="3" fill="#ccc"/>
+  <circle cx="320" cy="680" r="3" fill="#ccc"/>
+  <circle cx="435" cy="680" r="3" fill="#ccc"/>
+  <circle cx="550" cy="680" r="3" fill="#ccc"/>
+  <circle cx="665" cy="680" r="3" fill="#ccc"/>
+  <circle cx="780" cy="680" r="3" fill="#ccc"/>
+  <!-- Bottom edge shadow -->
+  <rect x="0" y="1060" width="872" height="30" fill="#e8e5de" rx="0"/>
+  <rect x="0" y="1082" width="872" height="8" fill="#d8d5ce" rx="4"/>
+</svg>

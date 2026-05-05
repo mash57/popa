@@ -9,6 +9,8 @@ export interface ProductConfig {
   }
   overlayBlendMode: GlobalCompositeOperation
   baseSize: { w: number; h: number }
+  baseImage?: string
+  overlayImage?: string
 }
 
 export interface Product {

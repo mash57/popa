@@ -29,12 +29,17 @@ export function ProductPreview({ photoUrl, config, baseUrl, overlayUrl, classNam
     canvas.height = baseSize.h
 
     Promise.all([
-      loadImage(baseUrl),
+      loadImage(baseUrl).catch(() => null),
       loadImage(photoUrl),
-      loadImage(overlayUrl),
+      loadImage(overlayUrl).catch(() => null),
     ]).then(([base, photo, overlay]) => {
-      // Draw base product shot
-      ctx.drawImage(base, 0, 0, baseSize.w, baseSize.h)
+      // Draw base product shot (or solid fallback)
+      if (base) {
+        ctx.drawImage(base, 0, 0, baseSize.w, baseSize.h)
+      } else {
+        ctx.fillStyle = '#1C1C1E'
+        ctx.fillRect(0, 0, baseSize.w, baseSize.h)
+      }
 
       // Draw user photo into the photo zone (cover-fit)
       ctx.save()
@@ -53,9 +58,11 @@ export function ProductPreview({ photoUrl, config, baseUrl, overlayUrl, classNam
       ctx.restore()
 
       // Draw overlay (shadow/glare) using multiply blend
-      ctx.globalCompositeOperation = overlayBlendMode
-      ctx.drawImage(overlay, 0, 0, baseSize.w, baseSize.h)
-      ctx.globalCompositeOperation = 'source-over'
+      if (overlay) {
+        ctx.globalCompositeOperation = overlayBlendMode
+        ctx.drawImage(overlay, 0, 0, baseSize.w, baseSize.h)
+        ctx.globalCompositeOperation = 'source-over'
+      }
 
       setReady(true)
     }).catch(console.error)

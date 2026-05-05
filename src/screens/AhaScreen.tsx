@@ -35,8 +35,8 @@ export function AhaScreen() {
 
   if (!selectedProduct || !selectedPhoto) return null
 
-  const baseUrl = `${selectedProduct.mockupPath}/base.webp`
-  const overlayUrl = `${selectedProduct.mockupPath}/overlay.webp`
+  const baseUrl = `${selectedProduct.mockupPath}/${config?.baseImage ?? 'base.webp'}`
+  const overlayUrl = `${selectedProduct.mockupPath}/${config?.overlayImage ?? 'overlay.webp'}`
 
   return (
     <div className="flex flex-col h-full relative" style={{ background: '#080808' }} data-testid="aha-screen">

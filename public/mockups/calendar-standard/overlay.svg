@@ -1,0 +1,14 @@
+<svg width="872" height="1090" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="paper-sheen" x1="0" y1="0" x2="0.3" y2="0.3">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="50%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="32" y="68" width="808" height="504" fill="url(#paper-sheen)"/>
+  <rect width="872" height="1090" fill="url(#shadow)"/>
+</svg>

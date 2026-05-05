@@ -8,5 +8,7 @@
     "borderRadius": 2
   },
   "overlayBlendMode": "multiply",
-  "baseSize": { "w": 872, "h": 1090 }
+  "baseSize": { "w": 872, "h": 1090 },
+  "baseImage": "base.svg",
+  "overlayImage": "overlay.svg"
 }
