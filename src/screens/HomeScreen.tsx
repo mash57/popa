@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ProductCard } from '../components/ProductCard'
 import { PermissionSheet } from '../components/PermissionSheet'
 import { useAppState } from '../lib/appState'
 import { loadProducts } from '../lib/products'
+import { loadPhotosFromFiles } from '../lib/photoLoader'
 import type { Product } from '../types'
 
 export function HomeScreen() {
@@ -11,6 +12,7 @@ export function HomeScreen() {
   const [current, setCurrent] = useState(0)
   const [sheetOpen, setSheetOpen] = useState(false)
   const [touchStart, setTouchStart] = useState<number | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     loadProducts().then(setProducts)
@@ -26,7 +28,6 @@ export function HomeScreen() {
     if (zone < 0.33) prev()
     else if (zone > 0.67) next()
     else {
-      // Centre tap — select product and go to gallery
       if (products[current]) {
         dispatch({ type: 'SELECT_PRODUCT', product: products[current] })
         if (state.permissionGranted) {
@@ -53,26 +54,48 @@ export function HomeScreen() {
   }
 
   function handleAllow() {
-    dispatch({ type: 'SET_PERMISSION', granted: true })
     setSheetOpen(false)
-    // Navigate to gallery — photos will already be buffering
     if (products[current]) {
       dispatch({ type: 'SELECT_PRODUCT', product: products[current] })
     }
-    dispatch({ type: 'NAVIGATE', screen: 'gallery' })
+    // Open native file picker — triggers camera roll on mobile
+    fileInputRef.current?.click()
   }
 
   function handleDeny() {
     setSheetOpen(false)
-    // Still go to gallery with manual upload fallback
     if (products[current]) {
       dispatch({ type: 'SELECT_PRODUCT', product: products[current] })
     }
     dispatch({ type: 'NAVIGATE', screen: 'gallery' })
   }
 
+  async function handleFilesSelected(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(e.target.files ?? [])
+    if (files.length === 0) {
+      dispatch({ type: 'NAVIGATE', screen: 'gallery' })
+      return
+    }
+    dispatch({ type: 'SET_PERMISSION', granted: true })
+    const photos = await loadPhotosFromFiles(files)
+    dispatch({ type: 'SET_PHOTOS', photos })
+    dispatch({ type: 'NAVIGATE', screen: 'gallery' })
+    // Reset so the same files can be re-selected later
+    e.target.value = ''
+  }
+
   return (
     <div className="flex flex-col h-full" style={{ background: '#080808' }}>
+      {/* Hidden file input — opened programmatically on Allow */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        className="hidden"
+        onChange={handleFilesSelected}
+      />
+
       {/* Status bar */}
       <div className="flex justify-between items-center px-[22px] pt-[6px] pb-0 flex-shrink-0 z-10">
         <span className="text-[13px] font-semibold text-white tracking-[-0.3px]">9:41</span>
@@ -98,7 +121,6 @@ export function HomeScreen() {
           <ProductCard key={product.id} product={product} offset={i - current} />
         ))}
 
-        {/* Permission sheet */}
         <PermissionSheet open={sheetOpen} onAllow={handleAllow} onDeny={handleDeny} />
       </div>
 
@@ -122,7 +144,6 @@ export function HomeScreen() {
         className="flex justify-between items-center px-7 pt-[10px] pb-[18px] flex-shrink-0"
         style={{ background: '#080808', borderTop: '0.5px solid rgba(255,255,255,0.04)' }}
       >
-        {/* Me button */}
         <button className="flex flex-col items-center gap-[3px] bg-transparent border-none cursor-pointer p-0">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
             <circle cx="11" cy="8" r="4" stroke="white" strokeOpacity="0.3" strokeWidth="1.3" />
@@ -131,7 +152,6 @@ export function HomeScreen() {
           <span className="text-[9px] tracking-[0.5px] lowercase" style={{ color: 'rgba(255,255,255,0.28)' }}>me</span>
         </button>
 
-        {/* Create pill */}
         <button
           onClick={e => { e.stopPropagation(); setSheetOpen(true) }}
           className="flex items-center gap-[7px] bg-white text-black border-none rounded-[22px] px-[26px] py-[10px] text-[13px] font-medium cursor-pointer active:scale-[0.96] transition-transform"
@@ -143,7 +163,6 @@ export function HomeScreen() {
           create
         </button>
 
-        {/* Spacer */}
         <div className="w-[38px]" />
       </div>
     </div>

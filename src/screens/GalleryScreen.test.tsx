@@ -29,14 +29,19 @@ describe('GalleryScreen', () => {
     expect(screen.getByText('Choose a photo')).toBeInTheDocument()
   })
 
-  it('shows speed strip', async () => {
+  it('shows empty state when no photos', async () => {
     renderGallery()
-    await waitFor(() => expect(screen.getByTestId('speed-strip')).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByTestId('pick-photos-button')).toBeInTheDocument())
   })
 
-  it('shows photos ready count', async () => {
-    renderGallery()
-    await waitFor(() => expect(screen.getByText(/photos · instant/)).toBeInTheDocument())
+  it('shows photo grid when photos provided', async () => {
+    const photo = { id: 'p1', thumbnailUrl: '/test.jpg', fullResUrl: '/test.jpg', width: 3000, height: 4000 }
+    render(
+      <AppStateProvider initialState={{ ...galleryInitial, photos: [photo], selectedPhoto: photo }}>
+        <GalleryScreen />
+      </AppStateProvider>
+    )
+    await waitFor(() => expect(screen.getByTestId('photo-p1')).toBeInTheDocument())
   })
 
   it('renders preview button', async () => {
