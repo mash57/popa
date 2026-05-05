@@ -424,3 +424,233 @@ Before marking the home screen as done, verify:
 ---
 
 *Next: Aha Moment screen brief — the photo preview with zoom-in animation.*
+
+---
+
+# popa — Aha Moment Screen Brief
+
+## 7. The Aha Moment — Full Flow (3 Screens)
+
+This is the north star of popa. Every engineering decision is subordinate to
+making this feel like maska — pure butter. No wait, no friction, no spinners.
+
+---
+
+### 7.1 Screen: Photo Gallery
+
+The user arrives here after selecting a product from the home screen.
+Photos are **already loaded** — buffered in the background since permission
+was granted. The user should never wait for photos to appear.
+
+**Layout:**
+```
+┌─────────────────────────────┐
+│  ← Canvas Wrap              │  ← Back context (which product)
+│  Choose a photo             │  ← 19px, weight 300
+│  Tap to select · already loaded │
+├─────────────────────────────┤
+│  ● Buffering photos · 247 photos · instant  │  ← Speed strip
+├─────────────────────────────┤
+│  ┌───┐ ┌───┐ ┌───┐         │
+│  │ ✓ │ │   │ │   │         │  ← 3-column photo grid
+│  └───┘ └───┘ └───┘         │     First photo pre-selected
+│  ┌───┐ ┌───┐ ┌───┐         │
+│  │   │ │   │ │   │         │
+│  └───┘ └───┘ └───┘         │
+│  ┌───┐ ┌───┐ ┌───┐         │
+│  │   │ │   │ │   │         │
+│  └───┘ └───┘ └───┘         │
+├─────────────────────────────┤
+│  [ Preview on Canvas → ]    │  ← White pill CTA
+└─────────────────────────────┘
+```
+
+**Speed strip** (critical UX signal):
+- Animated gradient dot (amber → violet, pulsing)
+- Label: "Photos ready"
+- Right-aligned count: "247 photos · instant"
+- This communicates to the user that the maska loading already happened.
+  They didn't wait. popa worked in the background.
+
+**Photo grid:**
+- 3-column, square thumbnails, 2px gap
+- Thumbnails are cached locally — loaded from device/Google Photos buffer
+- First/most recent photo pre-selected with white border + ✓ badge
+- Tapping any photo selects it (single select for now)
+- No loading states — every thumbnail is already present
+
+**CTA:** "Preview on Canvas →" — white pill, full width
+
+---
+
+### 7.2 Screen: The Aha Moment (Dolly Shot)
+
+This is the moment. Triggered the instant the user taps "Preview on Canvas".
+
+**What happens — the dolly sequence:**
+
+```
+Frame 0ms   : Screen transitions. Product appears small, slightly below centre,
+              opacity 0.
+Frame 60ms  : Animation begins.
+Frame 130ms : Product reaches full opacity.
+Frame 750ms : Product overshoots scale slightly (1.07×) — feels physical,
+              like a camera pushing in.
+Frame 920ms : Product settles back to 1.0× — spring physics, not ease.
+Frame 980ms : Product name and size fade in below.
+```
+
+This is NOT a simple scale animation. It is a **dolly push** — the sensation
+of a camera physically moving toward the subject. Use Framer Motion spring
+with stiffness: 180, damping: 18.
+
+**The flash:**
+At the moment the photo lands on the product (frame ~80ms), a very brief
+white flash (opacity 0.3 → 0, over 550ms) washes over the screen. Like a
+camera flash. Like a memory being made.
+
+**Layout during Aha:**
+```
+┌─────────────────────────────┐
+│                             │
+│                             │
+│                             │
+│       ┌─────────────┐       │
+│       │             │       │  ← Canvas product, centred
+│       │  [USER'S    │       │     dolly zooming in
+│       │   PHOTO]    │       │
+│       │             │       │
+│       └─────────────┘       │
+│                             │
+│    Canvas Wrap · 12×16″     │  ← Fades in after zoom settles
+│    Tap to edit · pinch to zoom │
+│                             │
+├─────────────────────────────┤
+│  [ Looks great — edit ✦ ]  │  ← White pill
+└─────────────────────────────┘
+```
+
+**Canvas product mockup rendering:**
+- Full photo fills the canvas frame
+- Canvas wrap edges visible: right side and bottom show the wrap-around
+  (darker shade of the photo's dominant colour)
+- Subtle gloss: `linear-gradient(135deg, rgba(255,255,255,0.08), transparent 50%, rgba(0,0,0,0.15))`
+- Film grain overlay: `opacity: 0.05`
+- Box shadow: `0 3px 0 rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.6)`
+
+**The ✦ symbol on the CTA button:**
+The sparkle character appears only on this screen. It signals something
+special just happened. Keep it subtle — same weight as the text.
+
+---
+
+### 7.3 Screen: Editor (immediately after Aha)
+
+The editor slides in after tapping "Looks great — edit ✦". The product
+stays visible but slightly smaller, centred, with crop handles overlaid.
+
+**Layout:**
+```
+┌─────────────────────────────┐
+│                             │
+│       ┌──────────────┐      │
+│       │ ┌──────────┐ │      │  ← Product with crop overlay
+│       │ │          │ │      │     Corner handles visible
+│       │ │ [PHOTO]  │ │      │
+│       │ │          │ │      │
+│       │ └──────────┘ │      │
+│       └──────────────┘      │
+│                             │
+├─────────────────────────────┤
+│ [Crop] [Brightness] [Contrast] [Warmth] [Text] → │  ← Scrollable chips
+│                             │
+│ Crop ────────●──────── +2   │  ← Active tool slider
+├─────────────────────────────┤
+│ [← Back]  [Add to order →] │
+└─────────────────────────────┘
+```
+
+**Tool chips (horizontal scroll, single select):**
+- Crop (default selected)
+- Brightness
+- Contrast
+- Warmth
+- Text
+
+Each chip activates its own slider below. Advanced options (filters,
+borders, etc.) are accessed by scrolling the chip row — not visible
+by default. Progressive complexity principle.
+
+**Slider:**
+- Label left (tool name, 8px uppercase)
+- Track with signature gradient fill (amber → violet)
+- Thumb: 13px white circle with drop shadow
+- Value right (numeric, muted)
+
+**Bottom bar:**
+- "← Back" ghost button (returns to Aha screen, preserves state)
+- "Add to order →" white pill (primary CTA, proceeds to bundle upsell)
+
+---
+
+### 7.4 Technical Requirements for Maska Speed
+
+These are hard engineering requirements, not suggestions.
+
+**Thumbnail buffering (must happen before gallery screen appears):**
+```
+1. On permission grant (home screen) → immediately call Google Photos API
+2. Fetch thumbnail URLs for most recent 247 photos (or device limit)
+3. Preload thumbnail images into browser cache using link rel=preload
+4. Store thumbnail blob URLs in a local Map keyed by photo ID
+5. Gallery grid renders from this local cache — zero network requests
+   at gallery render time
+```
+
+**Full-res loading (must happen before dolly animation starts):**
+```
+1. When user selects a photo → begin fetching full-res in background
+2. Show preview button as active immediately (don't wait for full-res)
+3. On "Preview" tap:
+   a. If full-res ready → dolly animation starts instantly
+   b. If still loading → show progress on button label ("Loading…")
+      then trigger dolly when ready
+4. Full-res processing (crop to product dimensions, colour profile
+   conversion) happens in a Web Worker — never blocks main thread
+```
+
+**Target timings:**
+| Action | Target |
+|---|---|
+| Gallery appears after product tap | < 100ms |
+| All thumbnails visible | 0ms (pre-cached) |
+| Dolly animation start after "Preview" tap | < 200ms |
+| Full-res photo on product | < 3000ms total from tap |
+| Editor appears after "Looks great" tap | < 150ms |
+
+---
+
+### 7.5 Component Checklist for Claude Code
+
+Before marking the Aha Moment flow as done, verify:
+
+- [ ] Gallery thumbnails render with zero loading delay (pre-cached)
+- [ ] Speed strip shows correct photo count and "instant" label
+- [ ] First photo is pre-selected on gallery load
+- [ ] Tapping a photo updates selection state correctly
+- [ ] Dolly animation uses Framer Motion spring (not ease/tween)
+- [ ] Spring params: stiffness 180, damping 18
+- [ ] White flash fires at animation start (opacity 0.3 → 0 over 550ms)
+- [ ] Canvas wrap edges rendered (darker wrap-around sides)
+- [ ] Product name + size fade in after dolly settles (delay: 650ms)
+- [ ] ✦ character appears only on Aha screen CTA
+- [ ] Editor crop handles visible on all four corners
+- [ ] Tool chips horizontally scrollable, single-select
+- [ ] Active tool shows slider immediately
+- [ ] "← Back" returns to Aha screen with state preserved
+- [ ] Full-res processing runs in Web Worker (verify via DevTools)
+- [ ] Preview render time test passes: < 3000ms (the canonical Aha test)
+
+---
+
+*This section appends to popa-UX-brief.md.*
