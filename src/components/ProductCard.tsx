@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { productGradients, filmGrainSvg } from '../lib/tokens'
 import type { Product } from '../types'
 
@@ -6,74 +7,9 @@ interface Props {
   offset: number // -1=left, 0=current, 1=right etc
 }
 
-function PatternOverlay({ category }: { category: string }) {
-  if (category === 'calendar') {
-    return (
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'repeating-linear-gradient(0deg,transparent,transparent 32px,rgba(255,255,255,0.06) 32px,rgba(255,255,255,0.06) 33px),' +
-            'repeating-linear-gradient(90deg,transparent,transparent 32px,rgba(255,255,255,0.04) 32px,rgba(255,255,255,0.04) 33px)',
-        }}
-      />
-    )
-  }
-  if (category === 'canvas') {
-    return (
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          top: 24, left: 24, right: 24, bottom: 80,
-          border: '18px solid rgba(255,255,255,0.07)',
-          borderRadius: 2,
-        }}
-      />
-    )
-  }
-  if (category === 'stationery') {
-    return (
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          marginLeft: 28,
-          borderLeft: '2px solid rgba(255,255,255,0.1)',
-          background:
-            'repeating-linear-gradient(0deg,transparent,transparent 22px,rgba(255,255,255,0.05) 22px,rgba(255,255,255,0.05) 23px)',
-        }}
-      />
-    )
-  }
-  if (category === 'magnet') {
-    return (
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          top: '50%', left: '50%',
-          transform: 'translate(-50%,-68%)',
-          width: 80, height: 52,
-          border: '12px solid rgba(255,255,255,0.1)',
-          borderBottom: 'none',
-          borderRadius: '40px 40px 0 0',
-        }}
-      />
-    )
-  }
-  if (category === 'prints') {
-    return (
-      <div
-        className="absolute pointer-events-none"
-        style={{ top: 28, left: 28, right: 28, bottom: 90, border: '2px solid rgba(255,255,255,0.08)', borderRadius: 3 }}
-      >
-        <div style={{ position: 'absolute', top: 8, left: 8, right: 8, bottom: 8, border: '1px solid rgba(255,255,255,0.05)' }} />
-      </div>
-    )
-  }
-  return null
-}
-
 export function ProductCard({ product, offset }: Props) {
   const gradient = productGradients[product.category] ?? productGradients.canvas
+  const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
     <div
@@ -93,8 +29,23 @@ export function ProductCard({ product, offset }: Props) {
         style={{ opacity: 0.035, backgroundImage: filmGrainSvg }}
       />
 
-      {/* Product pattern */}
-      <PatternOverlay category={product.category} />
+      {/* Product mockup image — centred hero */}
+      <div
+        className="absolute inset-0 flex items-center justify-center"
+        style={{ paddingBottom: 120, paddingTop: 24, paddingLeft: 32, paddingRight: 32 }}
+      >
+        <img
+          src={`${product.mockupPath}/base.svg`}
+          alt={product.label}
+          onLoad={() => setImgLoaded(true)}
+          className="max-w-full max-h-full object-contain transition-opacity duration-500 drop-shadow-2xl"
+          style={{
+            opacity: imgLoaded ? 1 : 0,
+            filter: 'drop-shadow(0 12px 32px rgba(0,0,0,0.45))',
+          }}
+          data-testid={`product-mockup-${product.id}`}
+        />
+      </div>
 
       {/* Card info */}
       <div
