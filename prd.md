@@ -31,9 +31,9 @@
 
 ### Product Vision
 
-popa is a mobile-first PWA that lets anyone turn phone photos into beautiful physical print products — fast, affordably, and with a sense of craft. It ships internationally from India (Printo), giving popa a structural cost advantage of 40–60% over local US, UK, and European alternatives.
+popa is a mobile-first PWA that lets anyone turn phone photos into beautiful physical print products — fast, affordably, and with a sense of craft. It ships internationally from India (Printo), giving popa a structural cost advantage of 30–40% over local US, UK, and European alternatives.
 
-**Tagline:** *"your photo papa — making memories tangible"*
+**Tagline:** *"your photo papa"*
 
 ### Strategic Positioning
 
@@ -265,6 +265,8 @@ Tap "Create" → Permission sheet → Deny
 
 **Fallback:** If full-res not yet ready when user taps Preview, button label shows "Loading…" with progress indicator until ready; dolly triggers immediately when ready
 
+**Important Fallback**
+If this Aha Moment needs to be discarded and replaced with another Aha Moment, ensure it is modular and does not disrupt the entire app or needs the entire app to be recreated.  
 ---
 
 ### 6.5 Editor Screen
@@ -313,13 +315,13 @@ Tap "Create" → Permission sheet → Deny
 #### Screen 2: Address
 - Pre-filled if returning user
 - Auto-detect country from IP; show relevant shipping options
-- Address form: name, line 1, line 2 (optional), city, postcode, country
+- Address form: name, line 1, line 2 (optional), city, postcode, country (allow special characters)
 - No account creation required (guest checkout always available)
 - "Continue" → Payment
 
 #### Screen 3: Payment
 - Apple Pay / Google Pay as primary CTA (Stripe Express Checkout Element)
-- Card input as secondary option (Stripe Payment Element)
+- Card input as secondary option (Razorpay payment element)
 - Price shown in user's local currency (USD, GBP, EUR, JPY)
 - Confirm button disabled until payment method selected
 - No upsells, no pop-ups, no distractions on this screen
@@ -634,7 +636,7 @@ amber  = photo resolution ≥ 1.0× required (warn, allow)
 red    = photo resolution < 1.0× required (warn, block confirmation)
 ```
 
-Users are never surprised by a quality failure after the fact. Red-rated photos cannot be confirmed.
+Users are never surprised by a quality failure after the fact. Red-rated photos cannot be confirmed. The bleed should be enforced without intervention of the customer or the back end operator. Research a  bleed creator library and add that as an option in the back end before downloading the print ready photographs.  
 
 ---
 
@@ -644,7 +646,7 @@ Users are never surprised by a quality failure after the fact. Red-rated photos 
 - Currency detected from IP geolocation on first visit; user can override in Me section
 - All transactions billed from Printo India entity
 - No GST on international orders (export)
-- GST applies only to India-destined orders (v2 scope)
+- GST applies only to India-destined OR Rupee payment orders (v2 scope)
 - Shipping cost shown before payment screen — never revealed at confirmation
 - Estimated delivery date shown before payment screen
 - Bundle discounts applied at cart level, visible in Review screen
