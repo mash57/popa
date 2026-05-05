@@ -1,0 +1,12 @@
+{
+  "photoZone": {
+    "x": 64,
+    "y": 64,
+    "width": 744,
+    "height": 930,
+    "perspectiveTransform": [1, 0, 0, 0, 1, 0, 0, 0, 1],
+    "borderRadius": 2
+  },
+  "overlayBlendMode": "multiply",
+  "baseSize": { "w": 872, "h": 1090 }
+}

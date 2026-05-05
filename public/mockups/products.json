@@ -1,0 +1,60 @@
+[
+  {
+    "id": "canvas-8x10",
+    "label": "Canvas Wrap",
+    "category": "canvas",
+    "mockupPath": "/mockups/canvas-8x10",
+    "printSizeMM": { "w": 203, "h": 254 },
+    "minResolutionPx": { "w": 2400, "h": 3000 },
+    "badge": "Best gift",
+    "priceFrom": 29,
+    "currency": "USD",
+    "shipsIn": 7
+  },
+  {
+    "id": "calendar-standard",
+    "label": "Calendar",
+    "category": "calendar",
+    "mockupPath": "/mockups/calendar-standard",
+    "printSizeMM": { "w": 216, "h": 279 },
+    "minResolutionPx": { "w": 2550, "h": 3300 },
+    "badge": "Most popular",
+    "priceFrom": 14,
+    "currency": "USD",
+    "shipsIn": 5
+  },
+  {
+    "id": "magnet-4x4",
+    "label": "Fridge Magnet",
+    "category": "magnet",
+    "mockupPath": "/mockups/magnet-4x4",
+    "printSizeMM": { "w": 102, "h": 102 },
+    "minResolutionPx": { "w": 1200, "h": 1200 },
+    "badge": "Bundle & save",
+    "priceFrom": 6,
+    "currency": "USD",
+    "shipsIn": 5
+  },
+  {
+    "id": "prints-4x6",
+    "label": "Photo Prints",
+    "category": "prints",
+    "mockupPath": "/mockups/prints-4x6",
+    "printSizeMM": { "w": 102, "h": 152 },
+    "minResolutionPx": { "w": 1200, "h": 1800 },
+    "priceFrom": 4,
+    "currency": "USD",
+    "shipsIn": 4
+  },
+  {
+    "id": "notebook-a5",
+    "label": "Notebook",
+    "category": "stationery",
+    "mockupPath": "/mockups/notebook-a5",
+    "printSizeMM": { "w": 148, "h": 210 },
+    "minResolutionPx": { "w": 1748, "h": 2480 },
+    "priceFrom": 18,
+    "currency": "USD",
+    "shipsIn": 5
+  }
+]
