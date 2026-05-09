@@ -107,7 +107,6 @@ export function HomeScreen() {
         <span className="text-[10px] tracking-[5px] lowercase" style={{ color: 'rgba(255,255,255,0.28)' }}>
           p · o · p · a
         </span>
-        <span className="block text-[10px]" style={{ color: 'rgba(255,255,255,0.4)' }}>mash</span>
       </div>
 
       {/* Card area */}
