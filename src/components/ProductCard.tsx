@@ -15,9 +15,9 @@ export function ProductCard({ product, offset }: Props) {
     <div
       className="absolute inset-0 flex flex-col justify-end"
       style={{
-        left: `${offset * 100}%`,
-        transition: 'left 0.4s cubic-bezier(0.32,0.72,0,1)',
-        willChange: 'left',
+        transform: `translateX(${offset * 100}%)`,
+        transition: 'transform 0.4s cubic-bezier(0.32,0.72,0,1)',
+        willChange: 'transform',
       }}
     >
       {/* Background gradient */}
