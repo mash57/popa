@@ -37,7 +37,7 @@ self.onmessage = async (e: MessageEvent<ProcessRequest>) => {
 
     const outputBlob = await canvas.convertToBlob({ type: 'image/webp', quality: 0.92 })
     const response: ProcessResponse = { blob: outputBlob, width: targetWidth, height: targetHeight }
-    self.postMessage(response, [])
+    self.postMessage(response)
   } catch (err) {
     const response: ProcessResponse = {
       blob: new Blob(),

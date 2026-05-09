@@ -4,7 +4,7 @@ import { formatPrice } from '../lib/pricing'
 
 export function ConfirmationScreen() {
   const { state, dispatch } = useAppState()
-  const { order, selectedPhoto } = state
+  const { order } = state
 
   if (!order) return null
 

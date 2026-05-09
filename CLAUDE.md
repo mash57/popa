@@ -220,6 +220,11 @@ Order pipeline stages: `Received → Art Processing → Pre-press → Sent to Pr
 
 ---
 
-## What doesn't exist yet
+## Current state
 
-As of project start, there is no code — only documentation. The first engineering task is scaffolding the React PWA and implementing the client-side preview compositing component for a single product (canvas-8x10).
+App is live at https://popa-swart.vercel.app
+
+Code exists across all screens. There are TypeScript errors that need fixing.
+Run `npm test` first to establish baseline, then `npm run lint` to see all TS errors.
+
+Vercel auto-deploys on every push to `main`.

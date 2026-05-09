@@ -18,7 +18,7 @@ function RatingBadge({ rating }: { rating: ResolutionRating }) {
 
 export function GalleryScreen() {
   const { state, dispatch } = useAppState()
-  const { selectedProduct, permissionGranted, selectedPhoto, photos } = state
+  const { selectedProduct, selectedPhoto, photos } = state
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   // Pre-select the first photo when photos arrive

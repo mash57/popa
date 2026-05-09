@@ -14,7 +14,7 @@ const TOOLS: { id: Tool; label: string }[] = [
 
 export function EditorScreen() {
   const { state, dispatch } = useAppState()
-  const { selectedProduct, selectedPhoto, editorAdjustments } = state
+  const { selectedPhoto, editorAdjustments } = state
   const [activeTool, setActiveTool] = useState<Tool>('crop')
 
   useEffect(() => {
