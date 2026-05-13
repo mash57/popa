@@ -111,7 +111,7 @@ export function HomeScreen() {
 
       {/* Card area */}
       <div
-        className="flex-1 relative overflow-hidden"
+        className="flex-1 relative overflow-hidden isolate"
         onClick={handleTapZone}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
